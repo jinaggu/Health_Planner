@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="py-5 text-center">
+        <h3>회원 가입이 완료되었습니다. 로그인 해주세요.</h3>
+        <a class="btn btn-info" th:href="@{/main}">Home</a>
+        <a class="btn btn-success" th:href="@{/member/loginPage}">Login</a>
+    </div>
+
+</div>
+
+</body>
+<script th:src="@{/js/signupSuccess.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+</html>
