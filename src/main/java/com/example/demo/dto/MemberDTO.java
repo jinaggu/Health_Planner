@@ -19,4 +19,8 @@ public class MemberDTO { // dto는 화면에 뿌려줄때 필요
 
     private String email;
 
+    private String like_food;
+
+    private long m_grade;
+
 }
