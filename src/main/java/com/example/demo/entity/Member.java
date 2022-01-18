@@ -23,6 +23,8 @@ public class Member extends BaseEntity{
 
     private String email;
 
-    private String likeFood;
+    private String like_food;
+
+    private long m_grade;
 
 }
