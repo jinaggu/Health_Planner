@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,15 +17,13 @@ import javax.servlet.http.HttpSession;
 public class mainController {
 
     @RequestMapping(value="/main", method = {RequestMethod.GET, RequestMethod.POST})
-    public String mainPage(HttpServletRequest req, HttpServletResponse res, RedirectAttributes redirectAttributes) {
+    public String mainPage(HttpServletRequest req, Model model) {
         log.info("mainPage......");
 
-        Object session = req.getSession().getAttribute("memberId");
-        log.info(session);
+        Object mid = req.getSession().getAttribute("mid");
+        log.info("mid : " + mid);
 
-        if (session == null) {
-            // redirectAttributes.add
-        }
+        model.addAttribute("mid", mid);
 
         return "/main";
     }
