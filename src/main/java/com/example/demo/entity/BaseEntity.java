@@ -11,16 +11,17 @@ import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 @MappedSuperclass // 테이블 생성안됨
-@EntityListeners(value = {AuditingEntityListener.class}) // 내부에서 객체생성/변경금지
+// 내부에서 객체생성/변경감지 -- application 클래스에 @EnableJpaAuditing 추가해야한다.
+@EntityListeners(value = {AuditingEntityListener.class})
 @Getter
-public class BaseEntity {
+abstract class BaseEntity {
 
     @CreatedDate
-    @Column(name = "regdate", updatable = false)
+    @Column(name = "reg_date", updatable = false)
     private LocalDateTime regDate;
 
     @LastModifiedDate // 최종 수정 시간을 자동으로 처리하는 용도도
-    @Column(name = "moddate")
-   private LocalDateTime modDate;
+    @Column(name = "mod_date")
+    private LocalDateTime modDate;
 
 }

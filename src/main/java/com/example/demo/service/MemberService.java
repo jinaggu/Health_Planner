@@ -10,7 +10,7 @@ public interface MemberService {
 
     String setMember(MemberDTO memberDTO); // 회원가입 후 멤버등록
 
-    MemberDTO getMember(String mid); // 로그인, 회원가입시 중복 id 방지조회 용도
+    MemberDTO getMember(String mid, String pw); // 로그인, 회원가입시 중복 id 방지조회 용도
 
     default MemberDTO entitiesToDTO(Member member) {
 
@@ -21,6 +21,8 @@ public interface MemberService {
                                 .email(member.getEmail())
                                 .like_food(member.getLike_food())
                                 .m_grade(member.getM_grade())
+                                .regDate(member.getRegDate())
+                                .modDate(member.getModDate())
                                 .build();
 
         return memberDTO;

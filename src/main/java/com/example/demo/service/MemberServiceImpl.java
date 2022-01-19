@@ -27,7 +27,14 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberDTO getMember(String mid) {
-        return null;
+    public MemberDTO getMember(String mid, String pw) {
+        Member member = memberRepository.findMember(mid, pw);
+        log.info("serviceImple : " + member);
+        if(member == null) {
+            return null;
+        } else {
+            MemberDTO memberDTO = entitiesToDTO(member);
+            return memberDTO;
+        }
     }
 }

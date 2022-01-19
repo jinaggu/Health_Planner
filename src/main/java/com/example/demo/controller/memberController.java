@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.MemberDTO;
+import com.example.demo.entity.Member;
 import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -9,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/member")
@@ -29,7 +33,7 @@ public class memberController {
     }
 
     @GetMapping("/loginPage")
-    public void login() {
+    public void loginPage() {
         log.info("loginPage...............");
     }
 
@@ -39,7 +43,23 @@ public class memberController {
         String mid = memberService.setMember(memberDTO);
         model.addAttribute("mid", mid);
 
+        log.info(mid);
+
         return "/member/signupSuccess";
+    }
+
+    @PostMapping("/login")
+    public String login(MemberDTO memberDTO, HttpServletRequest req) {
+        String mid = memberDTO.getMid();
+        String pw = memberDTO.getPw(); // todo : pw 가리기, jwt로 로그인 구현
+        MemberDTO member = memberService.getMember(mid, pw);
+        log.info(member);
+        if (member != null) {
+            HttpSession session = req.getSession();
+            session.setAttribute("mid", member.getMid());
+        }
+        log.info("login...............");
+        return "redirect:/main";
     }
 
 }

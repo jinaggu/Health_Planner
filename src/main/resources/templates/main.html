@@ -8,8 +8,14 @@
 <body>
     <div class="top">
         <h2>Health Planner</h2>
-        <span><a th:href="@{member/loginPage}">로그인</a></span>
-        <span><a th:href="@{member/signupPage}">회원가입</a></span>
+        <th:block th:if="${mid == null}">
+            <span><a th:href="@{member/loginPage}">로그인</a></span>
+            <span><a th:href="@{member/signupPage}">회원가입</a></span>
+        </th:block>
+        <th:block th:if="${mid != null}">
+            <!-- 타임리프 th:text 안에 변수 + 문자열을 쓰면 에러. ||안에 감싸주어야 한다. -->
+            <span th:text="|${mid} 님 반갑습니다.|"></span>
+        </th:block>
     </div>
     <div class="body">
         <div class="left">
