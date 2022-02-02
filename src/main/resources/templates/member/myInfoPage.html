@@ -13,29 +13,38 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="width : 500px">
 
     <div class="py-5 text-center">
-        <h3>로그인</h3>
+        <h3>내정보 수정</h3>
+        <br>
+        <div class="mb-3 text-center">
+            <img th:src="@{/image/user_img.jpg}" style="width : 100px; height : 100px; border: 3px solid gold; border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px;
+                                                        -webkit-border-radius: 70px;">
+            <br>
+            <br>
+            <input type="file" class="form-control" />
+        </div>
     </div>
 
     <form method="post" th:action="@{/member/login}">
-        <div class="mb-3">
-            <label for="mid">아이디</label>
-            <input type="text" class="form-control" id="mid" name="mid" placeholder="" value="" required>
+        <div class="mb-3 text-center">
+            <label for="mName">닉네임</label>
+            <input type="text" class="form-control" id="mName" name="mName" th:value="${mName}" readonly>
             <div class="invalid-feedback" style="width: 100%;">아이디를 입력해주세요.</div>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 text-center">
             <label for="pw">비밀번호</label>
             <input type="text" class="form-control" id="pw" name="pw" placeholder="" value="" required>
             <div class="invalid-feedback" style="width: 100%;">비밀번호를 입력해주세요.</div>
         </div>
-        <input class="btn btn-primary" type="submit" value="Login"/>
-        <a class="btn btn-success" th:href="@{/main}">Home</a>
-    </form>
 
-    <input id="null" type="text" th:value="${loginMsg}" hidden/>
+        <div class="mb-3 text-center">
+            <input class="btn btn-outline-dark" type="submit" value="취소"/>
+            <a class="btn btn-danger" th:href="@{/main}">수정</a>
+        </div>
+    </form>
 
 </div>
 

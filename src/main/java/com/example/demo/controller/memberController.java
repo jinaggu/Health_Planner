@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -49,7 +50,7 @@ public class memberController {
     }
 
     @PostMapping("/login")
-    public String login(MemberDTO memberDTO, HttpServletRequest req) {
+    public String login(MemberDTO memberDTO, HttpServletRequest req, RedirectAttributes rttr) {
         String mid = memberDTO.getMid();
         String pw = memberDTO.getPw(); // todo : pw 가리기, jwt로 로그인 구현
         MemberDTO member = memberService.getMember(mid, pw);
@@ -57,9 +58,33 @@ public class memberController {
         if (member != null) {
             HttpSession session = req.getSession();
             session.setAttribute("mid", member.getMid());
+            session.setAttribute("mName", member.getName());
+            log.info("login ok...............");
+            return "redirect:/main";
+        } else {
+            rttr.addFlashAttribute("loginMsg","empty");
+            return "redirect:/member/loginPage";
         }
-        log.info("login...............");
-        return "redirect:/main";
+    }
+
+    @GetMapping("/myPage")
+    public String myPage(HttpServletRequest req, Model model) {
+        Object mid = req.getSession().getAttribute("mid");
+        Object mName = req.getSession().getAttribute("mName");
+        log.info("mid : " + mid);
+
+        model.addAttribute("mName", mName);
+        return "/member/myPage";
+    }
+
+    @GetMapping("/myInfoPage")
+    public String myInfo(HttpServletRequest req, Model model) {
+        Object mid = req.getSession().getAttribute("mid");
+        Object mName = req.getSession().getAttribute("mName");
+        log.info("mid : " + mid);
+
+        model.addAttribute("mName", mName);
+        return "/member/myInfoPage";
     }
 
 }

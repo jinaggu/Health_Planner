@@ -27,4 +27,8 @@ public class Member extends BaseEntity{
 
     private long m_grade;
 
+    private String dagim_message;
+
+    private String dagim_yn;
+
 }

@@ -4,43 +4,90 @@
     <meta charset="UTF-8">
     <title>Health Planner</title>
     <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Bootstrap core JavaScript -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+    <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
 </head>
 <body>
-    <div class="top">
-        <h2>Health Planner</h2>
-        <th:block th:if="${mid == null}">
-            <span><a th:href="@{member/loginPage}">로그인</a></span>
-            <span><a th:href="@{member/signupPage}">회원가입</a></span>
-        </th:block>
-        <th:block th:if="${mid != null}">
-            <!-- 타임리프 th:text 안에 변수 + 문자열을 쓰면 에러. ||안에 감싸주어야 한다. -->
-            <span th:text="|${mid} 님 반갑습니다.|"></span>
-        </th:block>
-    </div>
-    <div class="body">
-        <div class="left">
-            <div><a th:href="@{member/mealRecord}">식단 기록</a></div>
-            <div><a th:href="@{member/diary}">다이어리</a></div>
-            <div><a th:href="@{member/diary}">상세리포트</a></div>
-            <div><a th:href="@{member/caloriesDictionary}">칼로리 사전</a></div>
-            <div><a th:href="@{member/hpShop}">HP SHOP</a></div>
-        </div>
-        <div class="right">
-            <div>주간 리포트</div>
-        </div>
-    </div>
-</body>
-<style>
-    .body{
-        width : 100%;
-        height : 100%;
-        background-color : gainsboro;
-    }
+<!-- todo : navbar 부분 fragment로 넣기. -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="@{/main}">Health Planner</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    .left{
-        width : 65%;
-        height : 70%;
-    }
-</style>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Home
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <!--<input class="form-control me-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
+                <ul class="navbar-nav me-auto">
+                    <th:block th:if="${mid == null}">
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{member/loginPage}">Login
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{member/signupPage}">SignUp
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                    </th:block>
+                    <th:block th:if="${mid != null}">
+                        <li class="nav-item">
+                            <a class="nav-link active" th:text="|${mid} 님 반갑습니다.|">
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{member/myPage}">내정보
+                                <span class="visually-hidden">(current)</span>
+                            </a>
+                        </li>
+                    </th:block>
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="d-grid gap-2" style="margin : 200px;">
+    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">식단 기록</button>
+    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">다이어리</button>
+    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">칼로리 사전</button>
+    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">상세 리포트</button>
+    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">HP SHOP</button>
+</div>
+
+</body>
+
 <script th:src="@{/js/main.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
 </html>

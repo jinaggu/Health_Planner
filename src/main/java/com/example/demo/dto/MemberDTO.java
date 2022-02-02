@@ -26,6 +26,10 @@ public class MemberDTO { // dto는 화면에 뿌려줄때 필요
 
     private long m_grade;
 
+    private String dagim_message;
+
+    private String dagim_yn;
+
     private LocalDateTime regDate, modDate;
 
 }
