@@ -5,11 +5,13 @@ import com.example.demo.entity.Member;
 import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.tomcat.util.http.parser.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.server.UnsupportedMediaTypeStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,12 +81,25 @@ public class memberController {
 
     @GetMapping("/myInfoPage")
     public String myInfo(HttpServletRequest req, Model model) {
-        Object mid = req.getSession().getAttribute("mid");
+        Object _mid = req.getSession().getAttribute("mid");
         Object mName = req.getSession().getAttribute("mName");
-        log.info("mid : " + mid);
+        log.info("mid : " + _mid);
+
+        String mid = _mid.toString();
+
+        if (mid != null) {
+            MemberDTO memberDTO = memberService.getMemberInfo(mid);
+            log.info("memberDTO : " + memberDTO);
+            model.addAttribute("memberDTO", memberDTO);
+        }
 
         model.addAttribute("mName", mName);
         return "/member/myInfoPage";
+    }
+
+    @PostMapping("/")
+    public String memberInfoSave() {
+        return "";
     }
 
 }

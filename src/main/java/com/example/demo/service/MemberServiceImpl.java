@@ -37,4 +37,11 @@ public class MemberServiceImpl implements MemberService{
             return memberDTO;
         }
     }
+
+    @Override
+    public MemberDTO getMemberInfo(String mid) {
+        Member member = memberRepository.findMemberInfo(mid);
+        MemberDTO memberDTO = entitiesToDTO(member);
+        return memberDTO;
+    }
 }
