@@ -12,7 +12,9 @@ public interface MemberService {
 
     MemberDTO getMember(String mid, String pw); // 로그인
     
-    MemberDTO getMemberInfo(String mid); // 회원정보 조회 
+    MemberDTO getMemberInfo(String mid); // 회원정보 조회
+
+    void modifyMemberInfo(MemberDTO memberDTO); //회원정보 수정
 
     default MemberDTO entitiesToDTO(Member member) {
 

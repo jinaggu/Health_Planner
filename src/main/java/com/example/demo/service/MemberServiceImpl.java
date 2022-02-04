@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -18,7 +19,7 @@ public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
 
     @Override
-    public String setMember(MemberDTO memberDTO) {
+    public String setMember(MemberDTO memberDTO) { // 회원가입
         Map<String, Object> entityMap = dtoToEntity(memberDTO);
         Member member = (Member) entityMap.get("member");
 
@@ -40,8 +41,28 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public MemberDTO getMemberInfo(String mid) {
-        Member member = memberRepository.findMemberInfo(mid);
-        MemberDTO memberDTO = entitiesToDTO(member);
-        return memberDTO;
+        if (mid == null) {
+            return null;
+        } else {
+            Member member = memberRepository.findMemberInfo(mid);
+            MemberDTO memberDTO = entitiesToDTO(member);
+            return memberDTO;
+        }
     }
+
+    @Override
+    public void modifyMemberInfo(MemberDTO memberDTO) { // 회원정보 수정
+        Optional<Member> result = memberRepository.findById(memberDTO.getMid());
+
+        if(result.isPresent()) {
+            Member member = result.get();
+            member.changeDagim_message(memberDTO.getDagim_message());
+            member.changeDagim_yn(memberDTO.getDagim_yn());
+            member.changeName(memberDTO.getName());
+
+            memberRepository.save(member);
+        }
+
+    }
+
 }

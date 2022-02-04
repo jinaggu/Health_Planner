@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Health Planner</title>
@@ -11,6 +12,7 @@
 </head>
 <body>
 <!-- todo : navbar 부분 fragment로 넣기. -->
+<th:block th:fragment="nav_header">
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
         <a class="navbar-brand" href="@{/main}">Health Planner</a>
@@ -78,16 +80,11 @@
         </div>
     </div>
 </nav>
-
-<div class="d-grid gap-2" style="margin : 200px;">
-    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">식단 기록</button>
-    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">다이어리</button>
-    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">칼로리 사전</button>
-    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">상세 리포트</button>
-    <button class="btn btn-lg btn-secondary font-weight-bold" type="button">HP SHOP</button>
-</div>
+</th:block>
+<th:block th:replace="~{/body :: content}"></th:block>
 
 </body>
 
 <script th:src="@{/js/main.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+
 </html>

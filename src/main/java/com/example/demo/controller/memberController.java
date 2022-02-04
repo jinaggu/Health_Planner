@@ -85,21 +85,24 @@ public class memberController {
         Object mName = req.getSession().getAttribute("mName");
         log.info("mid : " + _mid);
 
-        String mid = _mid.toString();
-
-        if (mid != null) {
+        if (_mid != null) {
+            String mid = _mid.toString();
             MemberDTO memberDTO = memberService.getMemberInfo(mid);
             log.info("memberDTO : " + memberDTO);
             model.addAttribute("memberDTO", memberDTO);
+        } else {
+            model.addAttribute("memberDTO", null);
         }
 
-        model.addAttribute("mName", mName);
         return "/member/myInfoPage";
     }
 
-    @PostMapping("/")
-    public String memberInfoSave() {
-        return "";
+    @PostMapping("/memberInfoSave")
+    public String memberInfoSave(MemberDTO memberDTO) {
+        log.info("memberInfoSave.......");
+        memberService.modifyMemberInfo(memberDTO);
+        log.info("회원 정보 수정됨.");
+        return "/member/myInfoPage";
     }
 
 }
