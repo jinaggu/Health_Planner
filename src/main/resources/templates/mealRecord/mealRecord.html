@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>mealRecord</title>
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Bootstrap core JavaScript -->
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+    <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
+
+</head>
+<body>
+<th:block th:replace="~{/main :: nav_header}"></th:block>
+<div id="container" class="m-1">
+    <br/>
+    <div class="m-1">
+        <ol class="m-3 breadcrumb justify-content-center">
+            <li class="breadcrumb-item active"><a href="#" style="text-decoration-line : none; color : white;" id="today"></a></li>
+        </ol>
+    </div>
+    <div class="m-5">
+        <h6>음식</h6>
+        <div class="progress text-center" style="width : 50%; height : 25px;">
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width : 30%;">0/0 kcal</div>
+        </div>
+        <br>
+        <h6>운동</h6>
+        <div class="progress" style="width : 50%; height : 25px;">
+            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"></div>
+        </div>
+        <br>
+        <button class="btn btn-success">칼로리 처방받기</button>
+    </div>
+
+    <h3 class="m-5 text-center">
+        칼로리 기록하기
+    </h3>
+
+    <div class="m-5" style="text-align:center">
+        <div style="background-color : gray; width : 100px; height: 100px; display:inline-block;vertical-align:middle;
+        margin-right: 20px;margin-left:20px;border-radius:50%;">
+            <div style="line-height:100px; color : white;">아침</div>
+        </div>
+        <div style="background-color : gray; width : 100px; height: 100px;display:inline-block;vertical-align:middle;
+        margin-right: 20px;margin-left:20px;border-radius:50%;">
+            <div style="line-height:100px; color : white;">점심</div>
+        </div>
+        <div style="background-color : gray; width : 100px; height: 100px;display:inline-block;vertical-align:middle;
+        margin-right: 20px; margin-left:20px;border-radius:50%;">
+            <div style="line-height:100px; color : white;">저녁</div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+<script th:src="@{/js/mealRecord.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+</html>

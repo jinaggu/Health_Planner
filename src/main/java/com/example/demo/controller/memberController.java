@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor // final , @notnull 인것에대해서 자동으로 생성자 만들어줌.
 public class memberController {
 
-    private final MemberService memberService;
+    private final MemberService memberService; // final을 달았기 때문에 @RequiredArgsConstructor 통해서 생성자 만들어줌.
 
     @GetMapping("/signupPage")
     public void signupPage() {
