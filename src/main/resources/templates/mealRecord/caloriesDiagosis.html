@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<th:block th:replace="~{/header :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <head>
+            <meta charset="UTF-8">
+            <title>caloriesDiagosis</title>
+            <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+            <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+            <!-- Bootstrap core JavaScript -->
+            <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+            <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
+
+        </head>
+        <body>
+        <div id="container" class="m-1" style="text-align:center">
+
+            <div class="m-1">
+                <ol class="m-3 breadcrumb justify-content-center">
+                    <li class="breadcrumb-item active"><a href="#" style="text-decoration-line : none; color : white;">비만도(BMI) 계산기</a></li>
+                </ol>
+            </div>
+            <br>
+            <form class="m-1" style="width : 40%; display:inline-block;" method="post" id="form">
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item"><a class="nav-link active" href="#info" data-toggle="tab">기본정보</a></li>
+                    <!-- a 태그의 href는 아래의 tab-content 영역의 id를 설정하고 data-toggle 속성을 tab으로 설정한다. -->
+                    <li class="nav-item"><a class="nav-link" href="#profile" data-toggle="tab">칼로리처방</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div div class="tab-pane fade show active" id="info">
+                        <br>
+                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked value="F">
+                            <label class="btn btn-outline-primary" for="btnradio1">여자</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="M">
+                            <label class="btn btn-outline-primary" for="btnradio2">남자</label>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="col-form-label col-form-label-sm mt-4">생년월일</label>
+                            <div>
+                                <input type="text" class="form-control form-control-sm" placeholder="ex) 19930402" name="date_of_birth" id="dateOfBirth">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-form-label col-form-label-sm mt-4">키</label>
+                            <input class="form-control form-control-sm" type="text" placeholder="" name="height" required id="height">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label col-form-label-sm mt-4">몸무게</label>
+                            <input class="form-control form-control-sm" type="text" placeholder="" name="weight" required id="weight">
+                        </div>
+                        <div id="bmiInfo"></div>
+                        <div>
+                            <input type="button" class="btn btn-success" id="memberInfoSave" value="기본정보 저장">
+                        </div>
+                        <input type="hidden" id="mid" name="mid" th:value="${session.mid}">
+                    </div>
+                    <!-- id는 고유한 이름으로 설정하고 tab의 href와 연결되어야 한다. -->
+                    <div class="tab-pane fade" id="profile">Profile 메뉴</div>
+                    <!-- fade 클래스는 선택적인 사항으로 트랜지션(transition)효과가 있다.
+                    in 클래스는 fade 클래스를 선언하여 트랜지션효과를 사용할 때 in은 active와 선택되어 있는 탭 영역의 설정이다. -->
+                </div>
+
+
+            </form>
+        </div>
+
+        </body>
+        <script th:src="@{/js/caloriesDiagosis.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+    </th:block>
+</th:block>
+</html>

@@ -23,7 +23,7 @@ public class mainController {
         Object mid = req.getSession().getAttribute("mid");
         log.info("mid : " + mid);
 
-        model.addAttribute("mid", mid);
+        //model.addAttribute("mid", mid);
 
         return "/main";
     }

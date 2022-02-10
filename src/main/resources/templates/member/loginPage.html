@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
+<th:block th:replace="~{/header :: setContent(~{this::content})}">
+<th:block th:fragment="content">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -32,7 +34,7 @@
             <div class="invalid-feedback" style="width: 100%;">비밀번호를 입력해주세요.</div>
         </div>
         <input class="btn btn-primary" type="submit" value="Login"/>
-        <a class="btn btn-success" th:href="@{/main}">Home</a>
+        <a class="btn btn-success" th:href="@{/member/signupPage}">회원가입</a>
     </form>
 
     <input id="null" type="text" th:value="${loginMsg}" hidden/>
@@ -41,4 +43,6 @@
 
 </body>
 <script th:src="@{/js/loginPage.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+</th:block>
+</th:block>
 </html>

@@ -1,89 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Health Planner</title>
-    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Bootstrap core JavaScript -->
-    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
-    <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
-</head>
-<body>
-<th:block th:fragment="nav_header">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/main}">Health Planner</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Home
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <!--<input class="form-control me-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
-                <ul class="navbar-nav me-auto">
-                    <th:block th:if="${mid == null}">
-                        <li class="nav-item">
-                            <a class="nav-link active" th:href="@{/member/loginPage}">Login
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" th:href="@{/member/signupPage}">SignUp
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                    </th:block>
-                    <th:block th:if="${mid != null}">
-                        <li class="nav-item">
-                            <a class="nav-link active" th:text="|${mid} 님 반갑습니다.|">
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" th:href="@{member/myPage}">내정보
-                                <span class="visually-hidden">(current)</span>
-                            </a>
-                        </li>
-                    </th:block>
-                </ul>
-            </form>
+<th:block th:replace="~{/header :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <div class="d-grid gap-2" style="margin : 200px;">
+            <a class="btn btn-lg btn-secondary font-weight-bold" href="/mealRecord/mealRecordPage">식단 기록</a>
+            <a class="btn btn-lg btn-secondary font-weight-bold" type="button">다이어리</a>
+            <a class="btn btn-lg btn-secondary font-weight-bold" type="button">칼로리 사전</a>
+            <a class="btn btn-lg btn-secondary font-weight-bold" type="button">상세 리포트</a>
+            <a class="btn btn-lg btn-secondary font-weight-bold" type="button">HP SHOP</a>
         </div>
-    </div>
-</nav>
+    </th:block>
 </th:block>
-<th:block th:replace="~{/body :: content}"></th:block>
-
-</body>
-
-<script th:src="@{/js/main.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
-
 </html>

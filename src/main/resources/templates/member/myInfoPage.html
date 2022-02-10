@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<th:block th:replace="~{/header :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+            <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+            <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
 
-    <!-- Bootstrap core JavaScript -->
-    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
-    <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
+            <!-- Bootstrap core JavaScript -->
+            <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+            <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
 
-</head>
-<body>
-<th:block th:replace="~{/main :: nav_header}"></th:block>
-<div class="container" style="width : 500px">
-    <div class="py-5 text-center">
-        <h3>내정보 수정</h3>
-        <br>
-        <div class="mb-3 text-center">
-            <img th:src="@{/image/user_img.jpg}" style="width : 100px; height : 100px; border: 3px solid gold; border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px;
-                                                        -webkit-border-radius: 70px;">
-            <br>
-            <br>
-            <input type="file" class="form-control" />
-        </div>
-    </div>
-
-    <form method="post" target="iframe1" action="/member/memberInfoSave">
-        <div class="mb-3 text-center">
-            <label for="email"><th:blok th:text="(등급)"></th:blok>계정</label>
-            <input type="hidden" name="mid" th:value="${memberDTO.mid}">
-            <input type="text" class="form-control" id="email" name="email" th:value="${memberDTO.email}" readonly>
-            <div class="invalid-feedback" style="width: 100%;">아이디를 입력해주세요.</div>
-        </div>
-
-        <div class="mb-3 text-center">
-            <label for="mName">닉네임</label>
-            <input type="text" class="form-control" id="mName" name="name" th:value="${memberDTO.name}">
-            <div class="invalid-feedback" style="width: 100%;">아이디를 입력해주세요.</div>
-        </div>
-
-        <div class="mb-3 text-center">
-            <label for="dagim_message">다짐 메세지</label>
-            <input type="dagim_message" class="form-control" id="dagim_message" name="dagim_message" placeholder="" th:value="${memberDTO.dagim_message}">
-            <div class="invalid-feedback" style="width: 100%;">비밀번호를 입력해주세요.</div>
-            <div class="form-check">
-                <input type="hidden" id="dagim_yn" name="dagim_yn">
-                <input class="form-check-input" type="checkbox" th:value="${memberDTO.dagim_yn}" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">
-                    다짐 메세지 비공개
-                </label>
+        </head>
+        <body>
+        <div class="container" style="width : 500px">
+            <div class="py-5 text-center">
+                <h3>내정보 수정</h3>
+                <br>
+                <div class="mb-3 text-center">
+                    <img th:src="@{/image/user_img.jpg}" style="width : 100px; height : 100px; border: 3px solid gold; border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px;
+                                                                -webkit-border-radius: 70px;">
+                    <br>
+                    <br>
+                    <input type="file" class="form-control" />
+                </div>
             </div>
+
+            <form method="post" target="iframe1" action="/member/memberInfoSave">
+                <div class="mb-3 text-center">
+                    <label for="email"><th:blok th:text="(등급)"></th:blok>계정</label>
+                    <input type="hidden" name="mid" th:value="${memberDTO.mid}">
+                    <input type="text" class="form-control" id="email" name="email" th:value="${memberDTO.email}" readonly>
+                    <div class="invalid-feedback" style="width: 100%;">아이디를 입력해주세요.</div>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <label for="mName">닉네임</label>
+                    <input type="text" class="form-control" id="mName" name="name" th:value="${memberDTO.name}">
+                    <div class="invalid-feedback" style="width: 100%;">아이디를 입력해주세요.</div>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <label for="dagim_message">다짐 메세지</label>
+                    <input type="dagim_message" class="form-control" id="dagim_message" name="dagim_message" placeholder="" th:value="${memberDTO.dagim_message}">
+                    <div class="invalid-feedback" style="width: 100%;">비밀번호를 입력해주세요.</div>
+                    <div class="form-check">
+                        <input type="hidden" id="dagim_yn" name="dagim_yn">
+                        <input class="form-check-input" type="checkbox" th:value="${memberDTO.dagim_yn}" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            다짐 메세지 비공개
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <input type="button" class="btn btn-danger" value="취소"/>
+                    <input type="submit" class="btn btn-outline-dark" value="수정" id="save"/>
+                </div>
+            </form>
+            <iframe id="iframe1" name="iframe1" style="display:none"></iframe>
+
         </div>
 
-        <div class="mb-3 text-center">
-            <input type="button" class="btn btn-danger" value="취소"/>
-            <input type="submit" class="btn btn-outline-dark" value="수정" id="save"/>
-        </div>
-    </form>
-    <iframe id="iframe1" name="iframe1" style="display:none"></iframe>
-
-</div>
-
-</body>
-<script th:src="@{/js/myInfoPage.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+        </body>
+        <script th:src="@{/js/myInfoPage.js}"></script> <!-- static 폴더에 넣어야한다 ... 그래야 잡힘 ..경로에 ..ㄷㄷ -->
+    </th:block>
+</th:block>
 </html>

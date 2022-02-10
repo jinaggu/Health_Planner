@@ -17,19 +17,19 @@ public class Member extends BaseEntity{
     /*@GeneratedValue(strategy =  GenerationType.IDENTITY)*/
     private String mid; // 아이디
 
-    private String pw;
+    private String pw; // 비밀번호
 
-    private String name;
+    private String name; // 이름
 
-    private String email;
+    private String email; // 이메일
 
-    private String like_food;
+    private String like_food; // 좋아하는 음식
 
-    private long m_grade;
+    private long m_grade; // 회원등급
 
-    private String dagim_message;
+    private String dagim_message; // 다짐메세지
 
-    private String dagim_yn;
+    private String dagim_yn; // 다짐메세지 비공개 여부
 
     public void changePw(String pw) {
         this.pw = pw;

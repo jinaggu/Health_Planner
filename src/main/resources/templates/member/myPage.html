@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>MyPage</title>
-    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-    <!-- Bootstrap core JavaScript -->
-    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
-    <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
-</head>
-<body>
-<th:block th:replace="~{/main :: nav_header}"></th:block>
-<div class="py-5 text-center">
-    <fieldset>
-        <img th:src="@{/image/user_img.jpg}" style="border: 3px solid green; width: 100px; height: 100px; border-radius: 70px;
-                    -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;  margin : 20px;">
-        <!--<div>&nbsp;</div>-->
-        <th:block th:if="${mName} != null">
-            <legend th:text="${mName}"></legend>
-        </th:block>
-        <th:block th:if="${mName == null}">
-            <legend th:text="띠용"></legend>
-        </th:block>
-        <div class="form-group">
-            <input type="text" th:value="${dagim_message}" disabled/>
+<th:block th:replace="~{/header :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <head>
+            <meta charset="UTF-8">
+            <title>MyPage</title>
+            <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+            <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+            <!-- Bootstrap core JavaScript -->
+            <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.js}"></script>
+            <link th:href="@{/vendor/bootswatch/bootstrap.css}" rel="stylesheet">
+        </head>
+        <body>
+        <div class="py-5 text-center">
+            <fieldset>
+                <img th:src="@{/image/user_img.jpg}" style="border: 3px solid green; width: 100px; height: 100px; border-radius: 70px;
+                            -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;  margin : 20px;">
+                <!--<div>&nbsp;</div>-->
+                <th:block th:if="${mName} != null">
+                    <legend th:text="${mName}"></legend>
+                </th:block>
+                <th:block th:if="${mName == null}">
+                    <legend th:text="띠용"></legend>
+                </th:block>
+                <div class="form-group">
+                    <input type="text" th:value="${dagim_message}" disabled/>
+                    <div>&nbsp;</div>
+                    <button type="button" class="btn btn-primary btn-lg" id="myInfo" onclick="location.href='/member/myInfoPage'">내 정보 ⇨</button>
+                </div>
+            </fieldset>
             <div>&nbsp;</div>
-            <button type="button" class="btn btn-primary btn-lg" id="myInfo" onclick="location.href='/member/myInfoPage'">내 정보 ⇨</button>
+            <button type="button" class="btn btn-outline-dark">게시글</button>
+            <button type="button" class="btn btn-outline-dark">댓글</button>
+            <button type="button" class="btn btn-outline-dark">식단</button>
+            <button type="button" class="btn btn-outline-dark">운동</button>
+            <button type="button" class="btn btn-outline-dark">알림</button>
         </div>
-    </fieldset>
-    <div>&nbsp;</div>
-    <button type="button" class="btn btn-outline-dark">게시글</button>
-    <button type="button" class="btn btn-outline-dark">댓글</button>
-    <button type="button" class="btn btn-outline-dark">식단</button>
-    <button type="button" class="btn btn-outline-dark">운동</button>
-    <button type="button" class="btn btn-outline-dark">알림</button>
-</div>
-</body>
-<script th:src="@{/js/myPage.js}"></script>
+        </body>
+        <script th:src="@{/js/myPage.js}"></script>
+    </th:block>
+</th:block>
 </html>
