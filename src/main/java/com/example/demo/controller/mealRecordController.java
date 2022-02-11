@@ -5,10 +5,14 @@ import com.example.demo.service.MemberInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/mealRecord")
@@ -33,15 +37,34 @@ public class mealRecordController {
     @GetMapping("/caloriesDiagosis")
     public String caloriesDiagosis() {
         log.info("caloriesDiagosis...........");
+
         return "/mealRecord/caloriesDiagosis";
     }
 
     @ResponseBody
-    @PostMapping("/memberInfoSave")
-    public void memberInfoSave(MemberInfoDTO memberInfoDTO) {
-        log.info("memberInfoSave...........");
+    @GetMapping("/memberInfoCheck")
+    public MemberInfoDTO memberInfoCheck(HttpServletRequest req) {
+        Object mid = req.getSession().getAttribute("mid");
 
-        memberInfoService.setMemberInfo(memberInfoDTO);
+        if (mid != null) {
+            log.info("not null");
+            MemberInfoDTO memberInfoDTO = memberInfoService.getMemberInfo(mid.toString());
+            log.info(memberInfoDTO);
+            return memberInfoDTO;
+        } else {
+            log.info("null");
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/memberInfoSave")
+    public String memberInfoSave(MemberInfoDTO memberInfoDTO) {
+        log.info("memberInfoSave...........");
+        log.info(memberInfoDTO.getBmi());
+
+        String bmi = memberInfoService.setMemberInfo(memberInfoDTO);
+        return bmi;
     }
 
 

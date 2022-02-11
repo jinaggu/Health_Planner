@@ -56,8 +56,10 @@
                             <input class="form-control form-control-sm" type="text" placeholder="" name="weight" required id="weight">
                         </div>
                         <div id="bmiInfo"></div>
+                        <div id="bmiRes"></div>
                         <div>
                             <input type="button" class="btn btn-success" id="memberInfoSave" value="기본정보 저장">
+                            <input type="button" class="btn btn-success" id="memberInfoUpdate" value="기본정보 수정" hidden>
                         </div>
                         <input type="hidden" id="mid" name="mid" th:value="${session.mid}">
                     </div>

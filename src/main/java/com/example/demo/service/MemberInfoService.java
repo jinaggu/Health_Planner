@@ -5,10 +5,15 @@ import com.example.demo.entity.MemberInfo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public interface MemberInfoService {
 
-    void setMemberInfo(MemberInfoDTO memberInfoDTO);
+    String setMemberInfo(MemberInfoDTO memberInfoDTO);
+
+    MemberInfoDTO getMemberInfo(String mid);
+
+    void updateMemberInfo(MemberInfoDTO memberInfoDTO);
 
     default MemberInfoDTO entitiesToDTO(MemberInfo memberInfo) {
         MemberInfoDTO memberInfoDTO = MemberInfoDTO.builder()

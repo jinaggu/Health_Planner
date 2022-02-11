@@ -34,14 +34,13 @@ public class MemberInfo extends BaseEntity{
 
     private String bmr; // 기초대사량
 
-    private void changeGender(String gender) { this.gender = gender; };
-    private void changeDateOfBirth(String date_of_birth) { this.date_of_birth = date_of_birth; }
-    private void changeHeight(String height) { this.height = height; }
-    private void changeWeight(String weight) { this.weight = weight; }
-    private void changeBmi(String bmi) { this.bmi = bmi; }
-    private void changeTargetWeight(String target_weight) { this.target_weight = target_weight; }
-    private void changeStartDietYm(String start_diet_ym) { this.start_diet_ym = start_diet_ym; }
-    private void changeBmr(String bmr) { this.bmr = bmr; }
-
+    public void changeGender(String gender) { this.gender = gender; };
+    public void changeDateOfBirth(String date_of_birth) { this.date_of_birth = date_of_birth; }
+    public void changeHeight(String height) { this.height = height; }
+    public void changeWeight(String weight) { this.weight = weight; }
+    public void changeBmi(String bmi) { this.bmi = bmi; }
+    public void changeTargetWeight(String target_weight) { this.target_weight = target_weight; }
+    public void changeStartDietYm(String start_diet_ym) { this.start_diet_ym = start_diet_ym; }
+    public void changeBmr(String bmr) { this.bmr = bmr; }
 
 }
