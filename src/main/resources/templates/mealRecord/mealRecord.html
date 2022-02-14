@@ -2,6 +2,9 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <th:block th:replace="~{/header :: setContent(~{this::content})}">
     <th:block th:fragment="content">
+        <style>
+
+        </style>
         <head>
             <meta charset="UTF-8">
             <title>mealRecord</title>
@@ -18,43 +21,58 @@
             <br/>
             <div class="m-1">
                 <ol class="m-3 breadcrumb justify-content-center">
-                    <li class="breadcrumb-item active"><a href="#" style="text-decoration-line : none; color : white;" id="today"></a></li>
+                    <li class="breadcrumb-item active"><a href="#" style="text-decoration-line : none; color : white;" id="today">아침식사</a></li>
                 </ol>
             </div>
-            <div class="m-5">
-                <h6>음식</h6>
-                <div class="progress text-center" style="width : 50%; height : 25px;">
-                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width : 30%;">0/0 kcal</div>
-                </div>
-                <br>
-                <h6>운동</h6>
-                <div class="progress" style="width : 50%; height : 25px;">
-                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar"></div>
-                </div>
-                <br>
-                <button class="btn btn-danger" onclick="location.href='/mealRecord/caloriesDiagosis'">칼로리 처방받기</button>
-            </div>
-
-            <h3 class="m-5 text-center">
-                칼로리 기록하기
-            </h3>
 
             <div class="m-5" style="text-align:center">
-                <div style="background-color : silver; width : 100px; height: 100px; display:inline-block;vertical-align:middle;
-                margin-right: 20px;margin-left:20px;border-radius:50%;">
-                    <div style="line-height:100px; color : white;"><a th:href="@{#}">아침</a></div>
-                </div>
-                <div style="background-color : silver; width : 100px; height: 100px;display:inline-block;vertical-align:middle;
-                margin-right: 20px;margin-left:20px;border-radius:50%;">
-                    <div style="line-height:100px; color : white;"><a th:href="@{#}">점심</a></div>
-                </div>
-                <div style="background-color : silver; width : 100px; height: 100px;display:inline-block;vertical-align:middle;
-                margin-right: 20px; margin-left:20px;border-radius:50%;">
-                    <div style="line-height:100px; color : white;"><a th:href="@{#}">저녁</a></div>
+                <input type="text" class="form-control" placeholder="검색어를 입력하세요." style="width : 40%;display:inline-block;vertical-align:middle;">
+                <button class="btn btn-danger" style="display : inline-block;" id="searchBtn" data-toggle="modal" data-target="#myModal">검색</button>
+            </div>
+            <div class="m-5" style="text-align:center;">
+                <h5>칼로리 정보</h5>
+                <table class="table table-hover" style="text-align:center; width : 50%; margin-left:auto; margin-right:auto;">
+                    <!--<thead style='display:none;'>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Column heading</th>
+                    </tr>
+                    </thead>-->
+                    <tbody>
+                    <tr class="table-active">
+                        <th scope="row">Active</th>
+                        <td>Column content</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Default</th>
+                        <td>Column content</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal" id="myModal" style="width : 100%;" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal body text goes here.</p>
+                        <p>Modal body text goes here.</p>
+                        <p>Modal body text goes here.</p>
+                        <p>Modal body text goes here.</p>
+                        <p>Modal body text goes here.</p>
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+                    </div>
                 </div>
             </div>
-
-
         </div>
 
         </body>
