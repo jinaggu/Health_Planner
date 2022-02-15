@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.FoodCaloriesDTO;
 import com.example.demo.dto.MemberInfoDTO;
+import com.example.demo.service.FoodCaloriesService;
 import com.example.demo.service.MemberInfoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,6 +23,7 @@ import javax.servlet.http.HttpSession;
 public class mealRecordController {
 
     private final MemberInfoService memberInfoService;
+    private final FoodCaloriesService foodCaloriesService;
 
     @GetMapping("/mealRecordPage")
     public String mealRecordPage() {
@@ -65,6 +68,14 @@ public class mealRecordController {
 
         String bmi = memberInfoService.setMemberInfo(memberInfoDTO);
         return bmi;
+    }
+
+    @ResponseBody
+    @GetMapping("/getFoodCalorieInfo")
+    public FoodCaloriesDTO getFoodCalorieInfo(String foodName) {
+        // MemberInfoDTO memberInfoDTO = memberInfoService.getMemberInfo(mid.toString());
+        FoodCaloriesDTO foodCaloriesDTO = (FoodCaloriesDTO) foodCaloriesService.getListOfCalories(foodName);
+        return foodCaloriesDTO;
     }
 
 
