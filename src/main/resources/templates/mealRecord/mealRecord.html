@@ -26,7 +26,7 @@
             </div>
 
             <div class="m-5" style="text-align:center">
-                <input type="text" class="form-control" placeholder="검색어를 입력하세요." style="width : 40%;display:inline-block;vertical-align:middle;">
+                <input type="text" id="searchVal" class="form-control" placeholder="검색어를 입력하세요." style="width : 40%;display:inline-block;vertical-align:middle;">
                 <button class="btn btn-danger" style="display : inline-block;" id="searchBtn" data-toggle="modal" data-target="#myModal">검색</button>
             </div>
             <div class="m-5" style="text-align:center;">
@@ -38,8 +38,8 @@
                         <th scope="col">Column heading</th>
                     </tr>
                     </thead>-->
-                    <tbody>
-                    <tr class="table-active">
+                    <!--<tbody>
+                    <tr>
                         <th scope="row">Active</th>
                         <td>Column content</td>
                     </tr>
@@ -47,7 +47,7 @@
                         <th scope="row">Default</th>
                         <td>Column content</td>
                     </tr>
-                    </tbody>
+                    </tbody>-->
                 </table>
             </div>
         </div>
@@ -60,15 +60,25 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <p>Modal body text goes here.</p>
-                        <p>Modal body text goes here.</p>
-                        <p>Modal body text goes here.</p>
-                        <p>Modal body text goes here.</p>
-                        <p>Modal body text goes here.</p>
-                        <p>Modal body text goes here.</p>
+                        <button type="button" class="btn btn-primary" id="calAdd">칼로리 추가</button>
+                        <br>
+                        <br>
+                        <!-- 검색기능 - 반복문으로 칼로리 처리  -->
+                        <table class="table table-hover" style="text-align:center; width : 100%; margin-left:auto; margin-right:auto;">
+                            <tbody id="tbody">
+                            <!--<tr>
+                                <th scope="row">Active</th>
+                                <td>Column content</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Default</th>
+                                <td>Column content</td>
+                            </tr>-->
+                            </tbody>
+                        </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
                     </div>
                 </div>

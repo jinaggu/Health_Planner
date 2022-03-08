@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -20,16 +21,12 @@ public class FoodCaloriesServiceImpl implements FoodCaloriesService{
 
     @Override
     public List<FoodCaloriesDTO> getListOfCalories(String FoodName) {
-        Optional<FoodCalories> result = foodCaloriesRepository.findById(FoodName);
-        if (result.isPresent()) {
-            FoodCalories foodCalories = result.get();
+        log.info(FoodName);
+        List<FoodCalories> result = foodCaloriesRepository.getFoodCalories(FoodName);
 
+        //List<FoodCalories> res = foodCaloriesRepository.findByFoodnameContaining()
 
-            FoodCaloriesDTO foodCaloriesDTO = entitiesToDTO(foodCalories);
-
-            return (List<FoodCaloriesDTO>) foodCaloriesDTO;
-        } else {
-            return null;
-        }
+        log.info(result);
+        return result.stream().map(FoodCalories -> entitiesToDTO(FoodCalories)).collect(Collectors.toList());
     }
 }

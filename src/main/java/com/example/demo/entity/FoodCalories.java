@@ -18,7 +18,7 @@ public class FoodCalories extends BaseEntity {
     @Id
     private String FOOD_CD;// 식품코드 (pk)
     private String FOOD_NM; // 식품이름
-    private String SERVING_SIZE; // 총내용량
+    private String SERVING_SIZE; // 1회 제공량
     private String NUTR_CONT1; // 열량(kcal)(1회제공량당)
     private String NUTR_CONT2; // 탄수화물(g)(1회제공량당)
     private String NUTR_CONT3; // 단백질(g)(1회제공량당)

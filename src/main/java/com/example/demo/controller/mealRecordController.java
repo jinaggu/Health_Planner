@@ -8,13 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/mealRecord")
@@ -72,9 +71,10 @@ public class mealRecordController {
 
     @ResponseBody
     @GetMapping("/getFoodCalorieInfo")
-    public FoodCaloriesDTO getFoodCalorieInfo(String foodName) {
-        // MemberInfoDTO memberInfoDTO = memberInfoService.getMemberInfo(mid.toString());
-        FoodCaloriesDTO foodCaloriesDTO = (FoodCaloriesDTO) foodCaloriesService.getListOfCalories(foodName);
+    public List<FoodCaloriesDTO> getFoodCalorieInfo(@RequestParam("foodName") String foodName) {
+        log.info(foodName);
+        List<FoodCaloriesDTO> foodCaloriesDTO = foodCaloriesService.getListOfCalories(foodName);
+        log.info(foodCaloriesDTO);
         return foodCaloriesDTO;
     }
 
