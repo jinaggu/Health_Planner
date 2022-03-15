@@ -33,10 +33,10 @@ $(document).ready(function() {
 
     let memberInfoCheck = $("#memberInfoCheck").val();
 
-    if (memberInfoCheck) {
+    /*if (memberInfoCheck) {
         $("#dateOfBirth").val
 
-    }
+    }*/
 
     $("#memberInfoSave").click(function() {
         let mid = $("#mid").val();

@@ -19,11 +19,11 @@ $(document).ready(function() {
             url : '/mealRecord/getFoodCalorieInfo',
             data : data,
             success : function(res) {
-                console.log(res)
+                console.log(res);
                 for (let i = 0; i < res.length; i++) {
                     $("#tbody").append("<tr>" + "<td><input type='checkbox' name='check'></td>" +
                     "<td scope='row'>"+res[i].food_NM+"</td><td>"+res[i].nutr_CONT1+"</td>"+
-                    "<td style='display:none;'><input type='hidden' value='" + res[i].food_CD + "'></td>" +
+                    "<td style='display:none;'>" + res[i].food_CD + "</td>" +
                     "</tr>");
                 }
             },
@@ -35,6 +35,40 @@ $(document).ready(function() {
     });
 
     $("#calAdd").click(function() {
+
+        let str = "";
+        let tdArr = new Array(); // 배열 선언
+
+        let checkBox = $("input:checkbox[name=check]:checked");
+        checkBox.each(function(i) {
+            let tr = checkBox.parent().parent().eq(i);
+            let td = tr.children();
+
+            let calObj = {};
+            calObj.name = td.eq(1).text();
+            calObj.cal = td.eq(2).text();
+            calObj.cd = td.eq(3).text();
+            calObj.mealType = "M";
+
+            tdArr.push(calObj);
+        });
+
+        let jsonData = JSON.stringify(tdArr);
+
+        $.ajax({
+            dataType : "json",
+            type : "post",
+            url : '/mealRecord/addCalories',
+            data : {checkBox : jsonData},
+            success : function(res) {
+                console.log(res);
+                location.href = "/mealRecord/mealRecord";
+            },
+            error : function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+            }
+        });
+
 
     });
 
