@@ -10,14 +10,16 @@ import java.util.Map;
 public interface MemberCalListService {
 
     void setMemCalList(List<Map<String, Object>> memCalList);
+    List<MemCalListDTO> getMemberCalList(String mid,String mealType);
 
     default MemCalListDTO entitiesToDTO(MemberCalList memberCalList) {
         MemCalListDTO memCalListDTO = MemCalListDTO.builder()
+                .idx(memberCalList.getIdx())
                 .mid(memberCalList.getMid())
-                .food_cd(memberCalList.getFood_cd())
-                .food_nm(memberCalList.getFood_nm())
+                .foodCd(memberCalList.getFoodCd())
+                .foodNm(memberCalList.getFoodNm())
                 .calories(memberCalList.getCalorie())
-                .meal_type(memberCalList.getMeal_type())
+                .mealType(memberCalList.getMealType())
                 .build();
         return memCalListDTO;
     }
@@ -27,10 +29,10 @@ public interface MemberCalListService {
 
         MemberCalList memberCalList = MemberCalList.builder()
                 .mid(memCalListDTO.getMid())
-                .food_cd(memCalListDTO.getFood_cd())
-                .food_nm(memCalListDTO.getFood_nm())
+                .foodCd(memCalListDTO.getFoodCd())
+                .foodNm(memCalListDTO.getFoodNm())
                 .calorie(memCalListDTO.getCalories())
-                .meal_type(memCalListDTO.getMeal_type())
+                .mealType(memCalListDTO.getMealType())
                 .build();
         entityMap.put("memCalList", memberCalList);
 

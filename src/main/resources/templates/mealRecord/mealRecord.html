@@ -26,20 +26,31 @@
             </div>
 
             <div class="m-5" style="text-align:center">
-                <input type="text" id="searchVal" class="form-control" placeholder="검색어를 입력하세요." style="width : 40%;display:inline-block;vertical-align:middle;">
+                <input type="text" id="searchVal" class="form-control" placeholder="음식을 입력하세요." style="width : 40%;display:inline-block;vertical-align:middle;">
                 <button class="btn btn-danger" style="display : inline-block;" id="searchBtn" data-toggle="modal" data-target="#myModal">검색</button>
             </div>
             <div class="m-5" style="text-align:center;">
-                <h7>칼로리 정보</h7>
+                <p id="totalCal">총 칼로리 :</p>
+                <h5 style="display : inline-block;">칼로리 정보</h5>
+                <button class="btn btn-primary" id="del">삭제</button>
+                <br/>
                 <table class="table table-hover" id="morningCal" style="text-align:center; width : 50%; margin-left:auto; margin-right:auto;">
                     <thead>
                     <tr>
+                        <th></th>
                         <th scope="col">이름</th>
                         <th scope="col">칼로리</th>
+                        <th hidden="true">idx</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="mainTbody" >
                         <!-- js에서 반복문 처리 -->
+                        <tr th:each="calList : ${memberCalList}">
+                            <td><input type="checkbox"/></td>
+                            <td th:text="${calList.foodNm}"></td>
+                            <td th:text="${calList.calories}"></td>
+                            <td style="display:none;" th:text="${calList.idx}"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

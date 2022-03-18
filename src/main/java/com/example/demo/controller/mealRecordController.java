@@ -12,6 +12,7 @@ import lombok.extern.log4j.Log4j2;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,18 +38,18 @@ public class mealRecordController {
     }
 
     @GetMapping("/mealRecord")
-    public String mealRecord(HttpServletRequest req) {
+    public String mealRecord(HttpServletRequest req, Model model) {
         Object mid = req.getSession().getAttribute("mid");
 
-        /*if (mid != null) {
+        if (mid != null) {
             log.info("not null");
-            MemberInfoDTO memberInfoDTO = memberInfoService.getMemberInfo(mid.toString());
-            log.info(memberInfoDTO);
-            return memberInfoDTO;
+            // todo : 페이지별 mealType을 파라미터로 받아와야한다. (하드 코딩x)
+            List<MemCalListDTO> memberCalList = memberCalListService.getMemberCalList(mid.toString(), "M");
+            log.info(memberCalList);
+            model.addAttribute("memberCalList" ,memberCalList);
         } else {
-            log.info("null");
-            return null;
-        }*/
+            model.addAttribute("loginCHK", "null");
+        }
         log.info("mealRecord...........");
         return "/mealRecord/mealRecord";
     }
@@ -118,10 +119,10 @@ public class mealRecordController {
 
             MemCalListDTO memCalListDTO = new MemCalListDTO();
             memCalListDTO.setMid(mid);
-            memCalListDTO.setFood_nm((String) obj.get("name"));
+            memCalListDTO.setFoodNm((String) obj.get("name"));
             memCalListDTO.setCalories((String) obj.get("cal"));
-            memCalListDTO.setFood_cd((String) obj.get("cd"));
-            memCalListDTO.setMeal_type((String) obj.get("mealType"));
+            memCalListDTO.setFoodCd((String) obj.get("cd"));
+            memCalListDTO.setMealType((String) obj.get("mealType"));
             memCalMap.put("memCalListDTO",memCalListDTO);
 
             memberCalList.add(memCalMap);

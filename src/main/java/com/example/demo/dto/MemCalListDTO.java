@@ -15,12 +15,12 @@ public class MemCalListDTO {
 
     private String mid;
 
-    private String food_cd;
+    private String foodCd;
 
-    private String food_nm;
+    private String foodNm;
 
     private String calories;
 
-    private String meal_type;
+    private String mealType;
 
 }

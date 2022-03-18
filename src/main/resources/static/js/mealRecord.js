@@ -56,13 +56,14 @@ $(document).ready(function() {
         let jsonData = JSON.stringify(tdArr);
 
         $.ajax({
-            dataType : "json",
+            //dataType : "json",
             type : "post",
             url : '/mealRecord/addCalories',
             data : {checkBox : jsonData},
-            success : function(res) {
-                console.log(res);
-                location.href = "/mealRecord/mealRecord";
+            success : function() {
+                $("#myModal").modal("hide");
+                window.location.href = "/mealRecord/mealRecord";
+                alert("11");
             },
             error : function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(textStatus);
