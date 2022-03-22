@@ -46,7 +46,14 @@ public class mealRecordController {
             // todo : 페이지별 mealType을 파라미터로 받아와야한다. (하드 코딩x)
             List<MemCalListDTO> memberCalList = memberCalListService.getMemberCalList(mid.toString(), "M");
             log.info(memberCalList);
+
+            float cnt = 0;
+            for (int i = 0; i <memberCalList.size(); i++) {
+                cnt += Float.parseFloat(memberCalList.get(i).getCalories());
+            }
+
             model.addAttribute("memberCalList" ,memberCalList);
+            model.addAttribute("totalCal" , cnt);
         } else {
             model.addAttribute("loginCHK", "null");
         }
@@ -131,6 +138,13 @@ public class mealRecordController {
         memberCalListService.setMemCalList(memberCalList);
 
         return "";
+    }
+
+    @ResponseBody
+    @GetMapping("/delCalories")
+    public void delCalories(@RequestParam(value = "idx[]") List<Long> idx) {
+        log.info(idx);
+        memberCalListService.delMemCalories(idx);
     }
 
 }

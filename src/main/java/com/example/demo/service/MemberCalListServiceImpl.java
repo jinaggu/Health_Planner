@@ -33,9 +33,16 @@ public class MemberCalListServiceImpl implements MemberCalListService {
 
     @Override
     public List<MemCalListDTO> getMemberCalList(String mid, String mealType) {
-        List<MemberCalList> result = memberCalListRepository.findByMidAndMealType(mid, mealType);
+        //List<MemberCalList> result = memberCalListRepository.findByMidAndMealType(mid, mealType); //getMemCalList
+        List<MemberCalList> result = memberCalListRepository.getMemCalList(mid, mealType);
         log.info("entity : " + result);
         return result.stream().map(MemberCalList -> entitiesToDTO(MemberCalList)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void delMemCalories(List<Long> idx) {
+        log.info(idx);
+        memberCalListRepository.deleteAllById(idx);
     }
 
 }

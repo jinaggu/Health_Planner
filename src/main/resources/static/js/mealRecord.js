@@ -70,6 +70,31 @@ $(document).ready(function() {
             }
         });
 
+    });
+
+    $("#del").click(function() {
+        let str = "";
+        let tdArr = new Array(); // 배열 선언
+
+        let checkBox = $("input:checkbox[name=chk]:checked");
+        checkBox.each(function(i) {
+            let tr = checkBox.parent().parent().eq(i);
+            let td = tr.children();
+            tdArr.push(td.eq(3).text()); // idx
+        });
+
+        $.ajax({
+            type : "get",
+            url : '/mealRecord/delCalories',
+            data : {idx : tdArr},
+            success : function() {
+                window.location.href = "/mealRecord/mealRecord";
+                console.log("del");
+            },
+            error : function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+            }
+        });
 
     });
 

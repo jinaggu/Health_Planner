@@ -30,7 +30,7 @@
                 <button class="btn btn-danger" style="display : inline-block;" id="searchBtn" data-toggle="modal" data-target="#myModal">검색</button>
             </div>
             <div class="m-5" style="text-align:center;">
-                <p id="totalCal">총 칼로리 :</p>
+                <p th:text="|총 칼로리 : ${totalCal}|"></p>
                 <h5 style="display : inline-block;">칼로리 정보</h5>
                 <button class="btn btn-primary" id="del">삭제</button>
                 <br/>
@@ -46,7 +46,7 @@
                     <tbody id="mainTbody" >
                         <!-- js에서 반복문 처리 -->
                         <tr th:each="calList : ${memberCalList}">
-                            <td><input type="checkbox"/></td>
+                            <td><input type="checkbox" name="chk"/></td>
                             <td th:text="${calList.foodNm}"></td>
                             <td th:text="${calList.calories}"></td>
                             <td style="display:none;" th:text="${calList.idx}"></td>

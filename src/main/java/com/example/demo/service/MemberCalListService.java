@@ -10,7 +10,10 @@ import java.util.Map;
 public interface MemberCalListService {
 
     void setMemCalList(List<Map<String, Object>> memCalList);
+
     List<MemCalListDTO> getMemberCalList(String mid,String mealType);
+
+    void delMemCalories(List<Long> idx);
 
     default MemCalListDTO entitiesToDTO(MemberCalList memberCalList) {
         MemCalListDTO memCalListDTO = MemCalListDTO.builder()
